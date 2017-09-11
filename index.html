@@ -6,24 +6,28 @@
 </head>
 
 <body>
-	<h1>Whac-A-Mole!</h1>
-
-	<button type="button" class="start" id="start">Start Game!</button>
+	<header>
+		<h1>Whac-A-Mole!</h1>
+		<h3>Current Score: <span id="score">0</span></h3>
+		<h4>High Score: </h4>
+		<h5>Time Remaining: <span id="time">20</span> seconds</h5>
+		<button type="button" class="start" id="start">Start Game!</button>
+	</header>
 
 	<div id="gameBoard">
 		<div class="row">
-			<div class="top hole"></div>
-			<div class="top hole"></div>
-			<div class="top hole"></div>
+			<div class="top hole" id="topLeft"></div>
+			<div class="top hole" id="topMid"></div>
+			<div class="top hole" id="topRight"><</div>
 		</div>
 		<div class="row">
-			<div class="mid hole"></div>
-			<div class="mid hole"></div>
+			<div class="mid hole" id="midLeft"></div>
+			<div class="mid hole" id="midRight"></div>
 		</div>
 		<div class="row">
-			<div class="bot hole"></div>
-			<div class="bot hole"></div>
-			<div class="bot hole"></div>
+			<div class="bot hole" id="botLeft"></div>
+			<div class="bot hole" id="botMid"></div>
+			<div class="bot hole" id="botRight"></div>
 		</div>
 	</div>
 

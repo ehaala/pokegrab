@@ -1,21 +1,45 @@
 var holes = $('.hole');
 var score = 0;
-// holes.click(function(){
-// 	holes.prepend('<img src="img/trump.png">');
-// })
-
-// setInterval(function() {
-// 	holes.prepend('<img src="img/trump.png">');
-// }, 2000);
+var hole1 = $('#topLeft');
+var count = 10;
 
 function moles() {
 	setTimeout(function() {
-		holes.prepend('<img src="img/trump.png">');
+		hole1.append('<img class="trump" src="img/trump.png">');
 		setTimeout(function() {
-			holes.empty();
+			hole1.empty();
 			moles();
-		}, 1000);
-	}, Math.random() * 4000);
+		}, 3000);
+	}, 6000);
 }
-moles();
 
+
+//adds click event to start button, which calls moles function
+$('#start').click(function(){
+	moles();
+	console.log("let the games begin");
+	var counter = setInterval(timer, 1000);
+	function timer() {
+		count--;
+		if (count < 0) {
+			clearInterval(counter);
+			$('#gameBoard').empty();
+			$('h3').addClass("flash");
+			return;
+		}
+		$('#time').text(count);
+	}
+})
+
+
+
+
+$(document).on('click', '.trump', function(e) {
+	$('img').attr("src","img/punched.png");
+	score++;
+	console.log(score);
+	$('#score').text(score);
+	setTimeout(function() {
+		hole1.empty()
+	}, 300);
+});
