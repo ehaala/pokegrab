@@ -9,16 +9,20 @@
 	<header>
 		<h1>Whac-A-Mole!</h1>
 		<h3>Current Score: <span id="score">0</span></h3>
-		<h4>High Score: </h4>
-		<h5>Time Remaining: <span id="time">20</span> seconds</h5>
+		<h4>High Score: <span id="high"></span></h4>
+		<h5>Time Remaining: <span id="time">15</span> seconds</h5>
 		<button type="button" class="start" id="start">Start Game!</button>
+		<select form="my-form" name="mySelection" id="difficulty">
+  			<option value="Easy">Easy</option>
+  			<option valeu="Hard">Hard</option>
+		</select>
 	</header>
 
 	<div id="gameBoard">
 		<div class="row">
 			<div class="top hole" id="topLeft"></div>
 			<div class="top hole" id="topMid"></div>
-			<div class="top hole" id="topRight"><</div>
+			<div class="top hole" id="topRight"></div>
 		</div>
 		<div class="row">
 			<div class="mid hole" id="midLeft"></div>
