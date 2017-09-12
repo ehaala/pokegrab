@@ -1,37 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Whac-A-Mole</title>
+	<title>Gotta Catch 'Em All!</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body>
 	<header>
-		<h1>Whac-A-Mole!</h1>
-		<h3>Current Score: <span id="score">0</span></h3>
-		<h4>High Score: <span id="high"></span></h4>
+		<div id="title"><img id="pokemon" src="img/pokemon.png"/></div>
+		<h3>You caught <span id="score">0</span> Pokémon</h3>
+		<p>(Catching a Mew counts as 2, but if you try to catch a Charizard, GAME OVER!)
+		<h4>HIGH SCORE: <span id="high"></span></h4>
 		<h5>Time Remaining: <span id="time">15</span> seconds</h5>
-		<button type="button" class="start" id="start">Start Game!</button>
-		<select form="my-form" name="mySelection" id="difficulty">
+		<button type="button" class="start myButton">Start Game!</button>
+<!-- 		<select form="my-form" name="mySelection" id="difficulty">
   			<option value="Easy">Easy</option>
   			<option valeu="Hard">Hard</option>
-		</select>
+		</select> -->
 	</header>
 
 	<div id="gameBoard">
 		<div class="row">
-			<div class="top hole" id="topLeft"></div>
-			<div class="top hole" id="topMid"></div>
-			<div class="top hole" id="topRight"></div>
+			<div class="top hole pika"></div>
+			<div class="top hole char"></div>
+			<div class="top hole pika"></div>
+			<div class="top hole mew"></div>
 		</div>
 		<div class="row">
-			<div class="mid hole" id="midLeft"></div>
-			<div class="mid hole" id="midRight"></div>
+			<div class="mid hole char"></div>
+			<div class="mid hole pika"></div>
+			<div class="mid hole mew"></div>
+			<div class="mid hole char"></div>
 		</div>
 		<div class="row">
-			<div class="bot hole" id="botLeft"></div>
-			<div class="bot hole" id="botMid"></div>
-			<div class="bot hole" id="botRight"></div>
+			<div class="bot hole mew"></div>
+			<div class="bot hole pika"></div>
+			<div class="bot hole char"></div>
+			<div class="bot hole pika"></div>
 		</div>
 	</div>
 

@@ -1,13 +1,35 @@
 body {
-	background-image: url("../img/Field-of-grass.jpg");
+	background: black;
+	background-image: url("../img/back2.png");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	height: 100%;
+	width: 100%;
 	text-align: center;
 	cursor:url("../img/hand.png"), auto;
 	font-family: copperplate, serif;
 }
 
-h1 {
-	font-size: 48px;
-	text-decoration: underline;
+h5 {
+	color: white;
+	background: black;
+	opacity: .6;
+	padding: 10px;
+}
+
+h4 {
+	color: navy;
+	text-shadow: 2px 2px white;
+}
+
+#title {
+	display: inline-block;
+	top: -100px;
+	height: 150px;
+}
+
+#pokemon {
+	margin: 0;
 }
 
 header {
@@ -15,61 +37,60 @@ header {
 	padding: 0;
 	line-height: 10px;
 	display: inline-block;
+	width: 100%;
 }
 
 #gameBoard {
 	display: inline-block;
 	position: relative;
-	top: 150px;
+	top: 50px;
 	width: 950px;
+	margin: 0 auto;
 }
-
-#start {
-	font-size: 24px;
-	background: green;
-	color: white;
-	border: 5px double black;
+	
+.myButton {
+	-moz-box-shadow:inset 0px 1px 0px 0px #54a3f7;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #54a3f7;
+	box-shadow:inset 0px 1px 0px 0px #54a3f7;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #007dc1), color-stop(1, #0061a7));
+	background:-moz-linear-gradient(top, #007dc1 5%, #0061a7 100%);
+	background:-webkit-linear-gradient(top, #007dc1 5%, #0061a7 100%);
+	background:-o-linear-gradient(top, #007dc1 5%, #0061a7 100%);
+	background:-ms-linear-gradient(top, #007dc1 5%, #0061a7 100%);
+	background:linear-gradient(to bottom, #007dc1 5%, #0061a7 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#007dc1', endColorstr='#0061a7',GradientType=0);
+	background-color:#007dc1;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+	border:1px solid #124d77;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:13px;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #154682;
 }
-
-#start:hover {
-	background: black;
+.myButton:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #0061a7), color-stop(1, #007dc1));
+	background:-moz-linear-gradient(top, #0061a7 5%, #007dc1 100%);
+	background:-webkit-linear-gradient(top, #0061a7 5%, #007dc1 100%);
+	background:-o-linear-gradient(top, #0061a7 5%, #007dc1 100%);
+	background:-ms-linear-gradient(top, #0061a7 5%, #007dc1 100%);
+	background:linear-gradient(to bottom, #0061a7 5%, #007dc1 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#0061a7', endColorstr='#007dc1',GradientType=0);
+	background-color:#0061a7;
 }
-
-#reset {
-	color: red;
-	font-size: 20px;
+.myButton:active {
+	position:relative;
+	top:1px;
 }
 
 #time {
 	color: red;
 	font-size: 20px;
-}
-
-.top {
-	background-image: url("../img/topsoil-dirt.jpg");
-	border-radius: 50%;
-	width: 100px;
-	height: 40px;
-	display: inline-block;
-	margin: 10px 50px;
-}
-
-.mid {
-	background-image: url("../img/topsoil-dirt.jpg");
-	border-radius: 50%;
-	width: 125px;
-	height: 50px;
-	display: inline-block;
-	margin: 25px 55px;
-}
-
-.bot {
-	background-image: url("../img/topsoil-dirt.jpg");
-	border-radius: 50%;
-	width: 150px;
-	height: 70px;
-	display: inline-block;
-	margin: 20px 80px;
 }
 
 .row {
@@ -80,6 +101,16 @@ header {
 
 .hole {
 	vertical-align: top;
+/*	background-image: url("../img/topsoil-dirt.jpg");
+*/	border-radius: 50%;
+	width: 100px;
+	height: 60px;
+	display: inline-block;
+	margin: 30px 65px;
+}
+
+.mid {
+	margin: 30px;
 }
 
 .flash {
@@ -100,4 +131,19 @@ header {
 
 img {
 	margin-top: -80px;
+}
+
+.gameOver {
+	background: black;
+	background-image: url("../img/movingCharizard.gif");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	height: 100%;
+	width: 100%;
+}
+
+.sadPikachu {
+	background: black;
+	background-image: url("../img/giphy.gif");
+	background-repeat: no-repeat;
 }

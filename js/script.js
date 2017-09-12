@@ -1,5 +1,6 @@
-var holes = $('.hole');
-var hole1 = $('#topLeft');
+var pikaSpaces = $('.pika');
+var charSpaces = $('.char');
+var mewSpaces = $('.mew');
 var score = 0;
 var count = 15;
 
@@ -9,22 +10,46 @@ if(localStorage.high === undefined){
 }
 console.log(localStorage.high);
 
-function moles() {
+function randomPikachu() {
 	setTimeout(function() {
-		var image = '<img class="trump" src="img/trump.png"/>';
-		$(image).appendTo(holes[Math.floor(Math.random()*8)]);
+		var image = '<img class="pikachu" src="img/pikachu.png"/>';
+		$(image).appendTo(pikaSpaces[Math.floor(Math.random()*5)]);
 		setTimeout(function() {
-			holes.empty();
-			moles();
-		}, 500 + Math.random() * 2000);
-	}, 10);
+			pikaSpaces.empty();
+			randomPikachu();
+		}, 750 + Math.random() * 1000);
+	}, 200);
+}
+
+function randomCharizard() {
+	setTimeout(function() {
+		var image = '<img class="charizard" src="img/flychar.gif"/>';
+		$(image).appendTo(charSpaces[Math.floor(Math.random()*4)]);
+		setTimeout(function() {
+			charSpaces.empty();
+			randomCharizard();
+		}, 1000 + Math.random() * 2000);
+	}, 500)
+}
+
+function randomMew() {
+	setTimeout(function() {
+		var image = '<img class="mewgif" src="img/mew.gif"/>';
+		$(image).appendTo(mewSpaces[Math.floor(Math.random()*3)]);
+		setTimeout(function() {
+			mewSpaces.empty();
+			randomMew();
+		}, 500 + Math.random() * 1000);
+	}, 1000)
 }
 
 //adds click event to start button, which calls moles function
-$('#start').click(function(){
-	check();
-	moles();
-	console.log("let the games begin");
+$('.start').click(function(){
+	randomPikachu();
+	randomCharizard();
+	randomMew();
+	$('.start').hide();
+	$('h4').hide();
 	var counter = setInterval(timer, 1000);
 	function timer() {
 		count--;
@@ -33,38 +58,46 @@ $('#start').click(function(){
 			$('#gameBoard').hide();
 			$('h3').addClass("flash");
 			$('#start').hide();
-			$('header').append('<button type="button" id="reset">Try Again!</button>');
+			$('header').append('<button type="button" class="myButton" id="reset">Try Again!</button>');
+			$('p').hide();
 			return;
 		}
 		$('#time').text(count);
 	}
 })
 
-
-//THIS FUNCTION IS NOT WORKING PROPERLY
-function check() {
-	var difficulty = $('#difficulty').value;
-	if (difficulty === "easy") {
-		console.log("this is easy");
-	} else {
-		console.log("this is hard");
-	}
-}
-
 //reset button (refreshes page)
 $(document).on('click', '#reset', function(e){
 	location.reload();
 })
 
-//increases score every time image is clicked
-$(document).on('click', '.trump', function(e) {
-	$('img').attr("src","img/punched.png");
+//increases score every time pikachu is clicked
+$(document).on('click', '.pikachu', function(e) {
+	$('.pikachu').attr("src","img/pokeball.png");
 	score++;
 	console.log(score);
 	$('#score').text(score);
 	checkScore(score);
 	setTimeout(function() {
-		hole1.empty()
+		pikaSpaces.empty();
+	}, 300);
+});
+
+$(document).on('click', '.charizard', function(e) {
+	$('h5').hide();
+	$('h4').hide();
+	$('#gameBoard').empty();
+	$('body').addClass("gameOver");
+	count = 0;
+})
+
+$(document).on('click', '.mewgif', function(e) {
+	$('.mewgif').attr("src","img/pokeball.png");
+	score += 2;
+	$('#score').text(score);
+	checkScore(score);
+	setTimeout(function() {
+		mewSpace.empty();
 	}, 300);
 });
 
@@ -75,3 +108,13 @@ function checkScore(score) {
 	}
 }
 $('#high').text(localStorage.high);
+
+// function checkWin(score) {
+// 	if (score = 0) {
+// 		$('#score').text("You didn't catch any Pokémon!");
+// 	} else if (1 <= score <= 5) {
+// 		$('#score').text("only " + score);
+// 	} else {
+// 		$('#score').text(score);
+// 	}
+// }
