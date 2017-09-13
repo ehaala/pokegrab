@@ -1,10 +1,9 @@
 body {
-	background: black;
+	background: green;
 	background-image: url("../img/back2.png");
 	background-size: 100%;
 	background-repeat: no-repeat;
-	height: 100%;
-	width: 100%;
+	min-width: 1000px;
 	text-align: center;
 	cursor:url("../img/hand.png"), auto;
 	font-family: copperplate, serif;
@@ -38,6 +37,15 @@ header {
 	line-height: 10px;
 	display: inline-block;
 	width: 100%;
+}
+
+#intro {
+	background: yellow;
+	opacity: .75;
+	width: 500px;
+	display: inline-block;
+	padding: 10px;
+	border: 3px solid black;
 }
 
 #gameBoard {

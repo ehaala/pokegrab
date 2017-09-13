@@ -8,11 +8,10 @@ localStorage.high;
 if(localStorage.high === undefined){
 	localStorage.high = 0;
 }
-console.log(localStorage.high);
 
 function randomPikachu() {
 	setTimeout(function() {
-		var image = '<img class="pikachu" src="img/pikachu.png"/>';
+		var image = '<img class="pikachu bounceInUp" src="img/pika2.gif"/>';
 		$(image).appendTo(pikaSpaces[Math.floor(Math.random()*5)]);
 		setTimeout(function() {
 			pikaSpaces.empty();
@@ -48,8 +47,7 @@ $('.start').click(function(){
 	randomPikachu();
 	randomCharizard();
 	randomMew();
-	$('.start').hide();
-	$('h4').hide();
+	$('#intro').hide();
 	var counter = setInterval(timer, 1000);
 	function timer() {
 		count--;
@@ -59,7 +57,7 @@ $('.start').click(function(){
 			$('h3').addClass("flash");
 			$('#start').hide();
 			$('header').append('<button type="button" class="myButton" id="reset">Try Again!</button>');
-			$('p').hide();
+			checkWin();
 			return;
 		}
 		$('#time').text(count);
@@ -75,29 +73,33 @@ $(document).on('click', '#reset', function(e){
 $(document).on('click', '.pikachu', function(e) {
 	$('.pikachu').attr("src","img/pokeball.png");
 	score++;
-	console.log(score);
+	checkWin(score);
 	$('#score').text(score);
 	checkScore(score);
 	setTimeout(function() {
 		pikaSpaces.empty();
 	}, 300);
 });
-
+//game over if charizard is clicked
 $(document).on('click', '.charizard', function(e) {
 	$('h5').hide();
 	$('h4').hide();
 	$('#gameBoard').empty();
 	$('body').addClass("gameOver");
 	count = 0;
+	score = 0;
+	checkWin(score);
+	$('h3').text("Charizard used flamethrower. Game Over!");
 })
-
+//score increases by 2 if mew is clicked
 $(document).on('click', '.mewgif', function(e) {
 	$('.mewgif').attr("src","img/pokeball.png");
 	score += 2;
+	checkWin(score);
 	$('#score').text(score);
 	checkScore(score);
 	setTimeout(function() {
-		mewSpace.empty();
+		mewSpaces.empty();
 	}, 300);
 });
 
@@ -109,12 +111,10 @@ function checkScore(score) {
 }
 $('#high').text(localStorage.high);
 
-// function checkWin(score) {
-// 	if (score = 0) {
-// 		$('#score').text("You didn't catch any Pokémon!");
-// 	} else if (1 <= score <= 5) {
-// 		$('#score').text("only " + score);
-// 	} else {
-// 		$('#score').text(score);
-// 	}
-// }
+function checkWin(score) {
+	if (score > 0) {
+		console.log("fuck");
+	} else if (score = 0) {
+		console.log("zerooooo");
+	}
+}
