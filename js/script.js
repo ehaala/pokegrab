@@ -56,8 +56,9 @@ $('.start').click(function(){
 			$('#gameBoard').hide();
 			$('h3').addClass("flash");
 			$('#start').hide();
+			$('h5').hide();
 			$('header').append('<button type="button" class="myButton" id="reset">Try Again!</button>');
-			checkWin();
+			checkWin(score);
 			return;
 		}
 		$('#time').text(count);
@@ -73,7 +74,6 @@ $(document).on('click', '#reset', function(e){
 $(document).on('click', '.pikachu', function(e) {
 	$('.pikachu').attr("src","img/pokeball.png");
 	score++;
-	checkWin(score);
 	$('#score').text(score);
 	checkScore(score);
 	setTimeout(function() {
@@ -85,7 +85,7 @@ $(document).on('click', '.charizard', function(e) {
 	$('h5').hide();
 	$('h4').hide();
 	$('#gameBoard').empty();
-	$('body').addClass("gameOver");
+	// $('body').addClass("gameOver");
 	count = 0;
 	score = 0;
 	checkWin(score);
@@ -95,7 +95,6 @@ $(document).on('click', '.charizard', function(e) {
 $(document).on('click', '.mewgif', function(e) {
 	$('.mewgif').attr("src","img/pokeball.png");
 	score += 2;
-	checkWin(score);
 	$('#score').text(score);
 	checkScore(score);
 	setTimeout(function() {
@@ -112,9 +111,14 @@ function checkScore(score) {
 $('#high').text(localStorage.high);
 
 function checkWin(score) {
-	if (score > 0) {
-		console.log("fuck");
-	} else if (score = 0) {
+	if (score > 0 && score < 6) {
+		$('body').addClass("tryAgain");
+		$('h3').text("You only caught " + score + " Pokémon... Try again!");
+	} else if (score > 6) {
+		$('body').addClass("winner");
+		$('h3').text("You caught " + score + " Pokémon!! You're a PokéMaster!")
+	} else if (score === 0) {
 		console.log("zerooooo");
+		$('body').addClass("gameOver");
 	}
 }
