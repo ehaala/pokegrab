@@ -1,6 +1,6 @@
 var pikaSpaces = $('.pika');
 var charSpaces = $('.char');
-var mewSpaces = $('.mew');
+var mewSpace = $('.mew');
 var score = 0;
 var count = 15;
 
@@ -12,7 +12,7 @@ if(localStorage.high === undefined){
 function randomPikachu() {
 	setTimeout(function() {
 		var image = '<img class="pikachu bounceInUp" src="img/pika2.gif"/>';
-		$(image).appendTo(pikaSpaces[Math.floor(Math.random()*5)]);
+		$(image).appendTo(pikaSpaces[Math.floor(Math.random()*7)]);
 		setTimeout(function() {
 			pikaSpaces.empty();
 			randomPikachu();
@@ -34,12 +34,12 @@ function randomCharizard() {
 function randomMew() {
 	setTimeout(function() {
 		var image = '<img class="mewgif" src="img/mew.gif"/>';
-		$(image).appendTo(mewSpaces[Math.floor(Math.random()*3)]);
+		$(image).appendTo(mewSpace);
 		setTimeout(function() {
-			mewSpaces.empty();
+			mewSpace.empty();
 			randomMew();
 		}, 500 + Math.random() * 1000);
-	}, 1000)
+	}, 2000)
 }
 
 //adds click event to start button, which calls moles function
@@ -47,6 +47,7 @@ $('.start').click(function(){
 	randomPikachu();
 	randomCharizard();
 	randomMew();
+	animateMew();
 	$('#intro').hide();
 	var counter = setInterval(timer, 1000);
 	function timer() {
@@ -89,7 +90,7 @@ $(document).on('click', '.charizard', function(e) {
 	count = 0;
 	score = 0;
 	checkWin(score);
-	$('h3').text("Charizard used flamethrower. Game Over!");
+	$('h3').text("Charizard used flamethrower. Game Over.");
 })
 //score increases by 2 if mew is clicked
 $(document).on('click', '.mewgif', function(e) {
@@ -110,6 +111,7 @@ function checkScore(score) {
 }
 $('#high').text(localStorage.high);
 
+//win conditions based on score
 function checkWin(score) {
 	if (score > 0 && score < 6) {
 		$('body').addClass("tryAgain");
@@ -118,7 +120,48 @@ function checkWin(score) {
 		$('body').addClass("winner");
 		$('h3').text("You caught " + score + " Pokémon!! You're a PokéMaster!")
 	} else if (score === 0) {
-		console.log("zerooooo");
 		$('body').addClass("gameOver");
 	}
+}
+
+
+
+//MEW FLYING ANIMATION
+function makeNewPosition(){
+    
+    // Get viewport dimensions (remove the dimension of the div)
+    var h = $(window).height() - 50;
+    var w = $(window).width() - 50;
+    
+    var nh = Math.floor(Math.random() * h);
+    var nw = Math.floor(Math.random() * w);
+    
+    return [nh,nw];    
+    
+}
+
+function animateMew(){
+    var newq = makeNewPosition();
+    var oldq = $('.mew').offset();
+    var speed = calcSpeed([oldq.top, oldq.left], newq);
+    
+    $('.mew').animate({ top: newq[0], left: newq[1] }, speed, function(){
+      animateMew();        
+    });
+    
+};
+
+function calcSpeed(prev, next) {
+    
+    var x = Math.abs(prev[1] - next[1]);
+    var y = Math.abs(prev[0] - next[0]);
+    
+    var greatest = x > y ? x : y;
+    
+    var speedModifier = 0.2;
+
+    var speed = Math.ceil(greatest/speedModifier);
+
+    return speed;
+
 }

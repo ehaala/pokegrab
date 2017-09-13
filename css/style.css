@@ -1,5 +1,5 @@
 body {
-	background: green;
+	background: black;
 	background-image: url("../img/back2.png");
 	background-size: 100%;
 	background-repeat: no-repeat;
@@ -45,7 +45,8 @@ header {
 	width: 500px;
 	display: inline-block;
 	padding: 10px;
-	border: 3px solid black;
+	border: 1px solid black;
+	font-weight: lighter;
 }
 
 #gameBoard {
@@ -115,6 +116,10 @@ header {
 	height: 60px;
 	display: inline-block;
 	margin: 30px 65px;
+}
+
+.mew {
+	position: fixed;
 }
 
 .mid {
