@@ -12,13 +12,10 @@
 		<h5>Time Remaining: <span id="time">15</span> seconds</h5>
 	</header>
 	<div id="intro">
-		<p>(Catch as many Pokémon as you can in the allotted time. Catching a Pikachu counts as 1, Mew counts as 2, but if you try to catch a Charizard, GAME OVER! Good luck.)
+		<p>Catch as many Pokémon as you can in the allotted time. Catching a Pikachu counts as 1, Mew counts as 2, but if you try to catch a Charizard, you lose! Good luck.</p>
+		<p>Catch at least 10 Pokémon to become a PokéMaster!</p>
 		<h4>HIGH SCORE: <span id="high"></span></h4>
 		<button type="button" class="start myButton">Start Game!</button>
-<!-- 		<select form="my-form" name="mySelection" id="difficulty">
-  			<option value="Easy">Easy</option>
-  			<option valeu="Hard">Hard</option>
-		</select> -->
 	</div>
 
 	<div id="gameBoard">
@@ -41,6 +38,11 @@
 			<div class="bot hole pika"></div>
 		</div>
 	</div>
+
+<audio id="battle" src="audio/pokeBattle.mp3" type="audio/mpeg"></audio>
+<audio id="battleWon" src="audio/winnerSong.mp3" type="audio/mpeg"></audio>
+<audio id="battleLost" src="audio/lossMusic.mp3" type="audio/mpeg"></audio>
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script type="text/javascript" src="js/script.js"></script>

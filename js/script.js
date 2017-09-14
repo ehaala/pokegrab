@@ -44,26 +44,30 @@ function randomCharizard() {
 
 //adds click event to start button, which calls moles function
 $('.start').click(function(){
-	randomPikachu();
-	randomMew();
-	randomCharizard();
-	animateMew();
+	$('#battle').get(0).play();
 	$('#intro').hide();
-	var counter = setInterval(timer, 1000);
-	function timer() {
-		count--;
-		if (count < 0) {
-			clearInterval(counter);
-			$('#gameBoard').hide();
-			$('h3').addClass("flash");
-			$('#start').hide();
-			$('h5').hide();
-			$('header').append('<button type="button" class="myButton" id="reset">Play Again!</button>');
-			checkWin(score);
-			return;
+	setTimeout(function() {
+		randomPikachu();
+		randomMew();
+		randomCharizard();
+		animateMew();
+		var counter = setInterval(timer, 1000);
+		function timer() {
+			count--;
+			if (count < 0) {
+				$('#battle').get(0).pause();
+				clearInterval(counter);
+				$('#gameBoard').hide();
+				$('h3').addClass("flash");
+				$('#start').hide();
+				$('h5').hide();
+				$('header').append('<button type="button" class="myButton" id="reset">Play Again!</button>');
+				checkWin(score);
+				return;
+			}
+			$('#time').text(count);
 		}
-		$('#time').text(count);
-	}
+	}, 2000);
 })
 
 //reset button (refreshes page)
@@ -116,11 +120,15 @@ function checkWin(score) {
 	if (score > 0 && score < 10) {
 		$('body').addClass("tryAgain");
 		$('h3').text("You only caught " + score + " Pokémon... Try again!");
+		$('#battleWon').get(0).play();
 	} else if (score > 9) {
 		$('body').addClass("winner");
-		$('h3').text("You caught " + score + " Pokémon!! You're a PokéMaster!")
+		$('h3').text("You caught " + score + " Pokémon!! You're a PokéMaster!");
+		$('#battleWon').get(0).play();
 	} else if (score === 0) {
 		$('body').addClass("gameOver");
+		$('#battleLost').get(0).play();
+
 	}
 }
 
