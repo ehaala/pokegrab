@@ -12,13 +12,14 @@ body {
 h5 {
 	color: white;
 	background: black;
-	opacity: .6;
+	opacity: .75;
 	padding: 10px;
 }
 
 h4 {
-	color: navy;
-	text-shadow: 2px 2px white;
+	color: red;
+	text-shadow: 1px 1px gray;
+	text-decoration: underline;
 }
 
 #title {
@@ -40,13 +41,15 @@ header {
 }
 
 #intro {
-	background: yellow;
+	background: black;
+	color: white;
 	opacity: .75;
 	width: 500px;
 	display: inline-block;
 	padding: 10px;
-	border: 1px solid black;
+	border: 2px solid red;
 	font-weight: lighter;
+	font-size: 22px;
 }
 
 #gameBoard {
@@ -109,13 +112,13 @@ header {
 }
 
 .hole {
-	vertical-align: top;
-/*	background-image: url("../img/topsoil-dirt.jpg");
-*/	border-radius: 50%;
-	width: 100px;
-	height: 60px;
+/*	background: red;
+*/	vertical-align: top;
+	border-radius: 50%;
+	width: 20px;
+	height: 20px;
 	display: inline-block;
-	margin: 30px 65px;
+	margin: 30px 100px;
 }
 
 .mew {
@@ -123,7 +126,7 @@ header {
 }
 
 .mid {
-	margin: 30px;
+	margin: 50px 100px;
 }
 
 .flash {
@@ -160,7 +163,6 @@ img {
 }
 
 .tryAgain {
-	/*background: black;*/
 	background-image: url("../img/pikafight.gif");
 	background-size: 100%
 	background-repeat: no-repeat;
@@ -169,8 +171,7 @@ img {
 }
 
 .winner {
-/*	background: black;
-*/	background-image: url("../img/pikaWin.gif");
+	background-image: url("../img/pikaWin.gif");
 	background-size: 100%
 	background-repeat: no-repeat;
 	height: 100%;

@@ -20,17 +20,6 @@ function randomPikachu() {
 	}, 200);
 }
 
-function randomCharizard() {
-	setTimeout(function() {
-		var image = '<img class="charizard" src="img/flychar.gif"/>';
-		$(image).appendTo(charSpaces[Math.floor(Math.random()*4)]);
-		setTimeout(function() {
-			charSpaces.empty();
-			randomCharizard();
-		}, 1000 + Math.random() * 2000);
-	}, 500)
-}
-
 function randomMew() {
 	setTimeout(function() {
 		var image = '<img class="mewgif" src="img/mew.gif"/>';
@@ -42,11 +31,22 @@ function randomMew() {
 	}, 2000)
 }
 
+function randomCharizard() {
+	setTimeout(function() {
+		var image = '<img class="charizard" src="img/char2.gif"/>';
+		$(image).appendTo(charSpaces[Math.floor(Math.random()*4)]);
+		setTimeout(function() {
+			charSpaces.empty();
+			randomCharizard();
+		}, 1000 + Math.random() * 2000);
+	}, 500)
+}
+
 //adds click event to start button, which calls moles function
 $('.start').click(function(){
 	randomPikachu();
-	randomCharizard();
 	randomMew();
+	randomCharizard();
 	animateMew();
 	$('#intro').hide();
 	var counter = setInterval(timer, 1000);
@@ -58,7 +58,7 @@ $('.start').click(function(){
 			$('h3').addClass("flash");
 			$('#start').hide();
 			$('h5').hide();
-			$('header').append('<button type="button" class="myButton" id="reset">Try Again!</button>');
+			$('header').append('<button type="button" class="myButton" id="reset">Play Again!</button>');
 			checkWin(score);
 			return;
 		}
@@ -79,7 +79,7 @@ $(document).on('click', '.pikachu', function(e) {
 	checkScore(score);
 	setTimeout(function() {
 		pikaSpaces.empty();
-	}, 300);
+	}, 200);
 });
 //game over if charizard is clicked
 $(document).on('click', '.charizard', function(e) {
@@ -99,8 +99,8 @@ $(document).on('click', '.mewgif', function(e) {
 	$('#score').text(score);
 	checkScore(score);
 	setTimeout(function() {
-		mewSpaces.empty();
-	}, 300);
+		mewSpace.empty();
+	}, 200);
 });
 
 //compares current score to high score(local storage)
@@ -113,10 +113,10 @@ $('#high').text(localStorage.high);
 
 //win conditions based on score
 function checkWin(score) {
-	if (score > 0 && score < 6) {
+	if (score > 0 && score < 10) {
 		$('body').addClass("tryAgain");
 		$('h3').text("You only caught " + score + " Pokémon... Try again!");
-	} else if (score > 6) {
+	} else if (score > 9) {
 		$('body').addClass("winner");
 		$('h3').text("You caught " + score + " Pokémon!! You're a PokéMaster!")
 	} else if (score === 0) {
@@ -124,11 +124,8 @@ function checkWin(score) {
 	}
 }
 
-
-
 //MEW FLYING ANIMATION
 function makeNewPosition(){
-    
     // Get viewport dimensions (remove the dimension of the div)
     var h = $(window).height() - 50;
     var w = $(window).width() - 50;
@@ -137,7 +134,6 @@ function makeNewPosition(){
     var nw = Math.floor(Math.random() * w);
     
     return [nh,nw];    
-    
 }
 
 function animateMew(){
@@ -148,20 +144,15 @@ function animateMew(){
     $('.mew').animate({ top: newq[0], left: newq[1] }, speed, function(){
       animateMew();        
     });
-    
 };
 
 function calcSpeed(prev, next) {
-    
     var x = Math.abs(prev[1] - next[1]);
     var y = Math.abs(prev[0] - next[0]);
-    
+
     var greatest = x > y ? x : y;
-    
     var speedModifier = 0.2;
 
     var speed = Math.ceil(greatest/speedModifier);
-
     return speed;
-
 }
