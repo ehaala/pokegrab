@@ -57,11 +57,10 @@ $('.start').click(function(){
 		function timer() {
 			count--;
 			if (count < 0) {
-				$('#battle').get(0).pause();
 				clearInterval(counter);
-				$('#gameBoard').hide();
+				$('#battle').get(0).pause();
 				$('h3').addClass("flash");
-				$('#start').hide();
+				$('#gameBoard').hide();
 				$('h5').hide();
 				$('header').append('<button type="button" class="myButton" id="reset">Play Again!</button>');
 				checkWin(score);
@@ -79,35 +78,37 @@ $(document).on('click', '#reset', function(e){
 
 //increases score every time pikachu is clicked
 $(document).on('click', '.pikachu', function(e) {
-	$('.pikachu').attr("src","img/pokeball.png");
 	score++;
+	$('.pikachu').attr("src","img/pokeball.png");
 	$('#score').text(score);
 	checkScore(score);
 	setTimeout(function() {
 		pikaSpaces.empty();
 	}, 200);
 });
-//game over if charizard is clicked
-$(document).on('click', '.charizard', function(e) {
-	$('h5').hide();
-	$('h4').hide();
-	$('#gameBoard').empty();
-	// $('body').addClass("gameOver");
-	count = 0;
-	score = 0;
-	checkWin(score);
-	$('h3').text("Charizard used flamethrower. Game Over.");
-})
+
 //score increases by 2 if mew is clicked
 $(document).on('click', '.mewgif', function(e) {
-	$('.mewgif').attr("src","img/pokeball.png");
 	score += 2;
+	$('.mewgif').attr("src","img/pokeball.png");
 	$('#score').text(score);
 	checkScore(score);
 	setTimeout(function() {
 		mewSpace.empty();
 	}, 200);
 });
+
+//game over if charizard is clicked
+$(document).on('click', '.charizard', function(e) {
+	count = 0;
+	score = 0;
+	$('h3').addClass("flash");
+	$('h3').text("Charizard attacked. Game Over.");
+	$('h4').hide();
+	$('h5').hide();
+	$('#gameBoard').hide();
+	checkWin(score);
+})
 
 //compares current score to high score(local storage)
 function checkScore(score) {
@@ -145,11 +146,11 @@ function makeNewPosition(){
 }
 
 function animateMew(){
-    var newX = makeNewPosition();
-    var oldX = $('.mew').offset();
-    var speed = calcSpeed([oldX.top, oldX.left], newX);
+    var newq = makeNewPosition();
+    var oldq = $('.mew').offset();
+    var speed = calcSpeed([oldq.top, oldq.left], newq);
     
-    $('.mew').animate({ top: newX[0], left: newX[1] }, speed, function(){
+    $('.mew').animate({ top: newq[0], left: newq[1] }, speed, function(){
       animateMew();        
     });
 };
@@ -159,7 +160,7 @@ function calcSpeed(prev, next) {
     var y = Math.abs(prev[0] - next[0]);
     var greatest = x > y ? x : y;
     if ($('#form').val() === "hard") {
-    	var speedModifier = 0.3;
+    	var speedModifier = 0.4;
     } else {
     	var speedModifier = 0.1;
     }
