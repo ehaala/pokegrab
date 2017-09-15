@@ -62,7 +62,7 @@ $('.start').click(function(){
 				$('h3').addClass("flash");
 				$('#gameBoard').hide();
 				$('h5').hide();
-				$('header').append('<button type="button" class="myButton" id="reset">Play Again!</button>');
+				$('header').append('<button type="button" class="myButton" id="reset">PLAY AGAIN !</button>');
 				checkWin(score);
 				return;
 			}
@@ -131,22 +131,24 @@ function checkWin(score) {
 	} else if (score === 0) {
 		$('body').addClass("gameOver");
 		$('#battleLost').get(0).play();
-
 	}
 }
 
 //MEW FLYING ANIMATION
+
+//makes random new position within document
 function makeNewPosition(){
-    var h = $(window).height() - 50;
-    var w = $(window).width() - 50;
+    var h = $(document).height();
+    var w = $(document).width();
     var nh = Math.floor(Math.random() * h);
     var nw = Math.floor(Math.random() * w);
-    
+
     return [nh,nw];    
 }
 
 function animateMew(){
     var newq = makeNewPosition();
+    //offset returns object containing properties top & left
     var oldq = $('.mew').offset();
     var speed = calcSpeed([oldq.top, oldq.left], newq);
     
@@ -156,8 +158,11 @@ function animateMew(){
 };
 
 function calcSpeed(prev, next) {
+	//finds difference in x coor
     var x = Math.abs(prev[1] - next[1]);
+    //difference in y coor
     var y = Math.abs(prev[0] - next[0]);
+    //if x > y, greatest = x; else, greatest = y
     var greatest = x > y ? x : y;
     if ($('#form').val() === "hard") {
     	var speedModifier = 0.4;

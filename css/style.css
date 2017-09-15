@@ -6,7 +6,7 @@ body {
 	min-width: 1000px;
 	text-align: center;
 	cursor:url("../img/hand.png"), auto;
-	font-family: copperplate, serif;
+	font-family: Gruppo, serif;
 }
 
 header {
@@ -22,6 +22,7 @@ h5 {
 	background: black;
 	opacity: .75;
 	padding: 10px;
+	font-size: 16px;
 }
 
 h4 {
@@ -49,7 +50,8 @@ h4 {
 	padding: 10px;
 	border: 1px solid red;
 	font-weight: lighter;
-	font-size: 22px;
+	font-size: 20px;
+	line-height: 24px;
 }
 
 #gameBoard {
@@ -58,6 +60,16 @@ h4 {
 	top: 50px;
 	width: 950px;
 	margin: 0 auto;
+}
+
+#form {
+   overflow:hidden;
+   width:100px;
+   border-radius: 9px 9px 9px 9px;
+   background: black;
+   color: white;
+   font-family: Gruppo;
+   font-size: 16px;
 }
 	
 .myButton {
@@ -79,7 +91,7 @@ h4 {
 	display:inline-block;
 	cursor:pointer;
 	color:#ffffff;
-	font-family:Arial;
+	font-family: Gruppo;
 	font-size:13px;
 	padding:6px 24px;
 	text-decoration:none;
@@ -102,7 +114,7 @@ h4 {
 
 #time {
 	color: red;
-	font-size: 20px;
+	font-size: 28px;
 }
 
 .row {
