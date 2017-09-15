@@ -42,7 +42,6 @@ function randomCharizard() {
 	}, 500)
 }
 
-//adds click event to start button, which calls moles function
 $('.start').click(function(){
 	$('#battle').get(0).play();
 	$('#intro').hide();
@@ -71,12 +70,10 @@ $('.start').click(function(){
 	}, 2000);
 })
 
-//reset button (refreshes page)
 $(document).on('click', '#reset', function(e){
 	location.reload();
 })
 
-//increases score every time pikachu is clicked
 $(document).on('click', '.pikachu', function(e) {
 	score++;
 	$('.pikachu').attr("src","img/pokeball.png");
@@ -87,7 +84,6 @@ $(document).on('click', '.pikachu', function(e) {
 	}, 200);
 });
 
-//score increases by 2 if mew is clicked
 $(document).on('click', '.mewgif', function(e) {
 	score += 2;
 	$('.mewgif').attr("src","img/pokeball.png");
@@ -98,7 +94,6 @@ $(document).on('click', '.mewgif', function(e) {
 	}, 200);
 });
 
-//game over if charizard is clicked
 $(document).on('click', '.charizard', function(e) {
 	count = 0;
 	score = 0;
@@ -110,7 +105,6 @@ $(document).on('click', '.charizard', function(e) {
 	checkWin(score);
 })
 
-//compares current score to high score(local storage)
 function checkScore(score) {
 	if (score > localStorage.high) {
 		localStorage.high = score;
@@ -118,7 +112,6 @@ function checkScore(score) {
 }
 $('#high').text(localStorage.high);
 
-//win conditions based on score
 function checkWin(score) {
 	if (score > 0 && score < 10) {
 		$('body').addClass("tryAgain");
@@ -134,9 +127,6 @@ function checkWin(score) {
 	}
 }
 
-//MEW FLYING ANIMATION
-
-//makes random new position within document
 function makeNewPosition(){
     var h = $(document).height();
     var w = $(document).width();
@@ -148,7 +138,6 @@ function makeNewPosition(){
 
 function animateMew(){
     var newq = makeNewPosition();
-    //offset returns object containing properties top & left
     var oldq = $('.mew').offset();
     var speed = calcSpeed([oldq.top, oldq.left], newq);
     
@@ -158,11 +147,8 @@ function animateMew(){
 };
 
 function calcSpeed(prev, next) {
-	//finds difference in x coor
     var x = Math.abs(prev[1] - next[1]);
-    //difference in y coor
     var y = Math.abs(prev[0] - next[0]);
-    //if x > y, greatest = x; else, greatest = y
     var greatest = x > y ? x : y;
     if ($('#form').val() === "hard") {
     	var speedModifier = 0.4;

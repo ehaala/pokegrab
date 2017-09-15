@@ -7,11 +7,11 @@ body {
 	text-align: center;
 	cursor:url("../img/hand.png"), auto;
 	font-family: Gruppo, serif;
+	margin: 0;
+	padding: 0;
 }
 
 header {
-	margin: 0;
-	padding: 0;
 	line-height: 10px;
 	display: inline-block;
 	width: 950px;
@@ -124,8 +124,7 @@ h4 {
 }
 
 .hole {
-/*	background: red;
-*/	vertical-align: top;
+	vertical-align: top;
 	border-radius: 50%;
 	width: 20px;
 	height: 20px;
