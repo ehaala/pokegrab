@@ -27,7 +27,7 @@ function randomMew() {
 		setTimeout(function() {
 			mewSpace.empty();
 			randomMew();
-		}, 500 + Math.random() * 1000);
+		}, 750 + Math.random() * 1000);
 	}, 2000)
 }
 
@@ -49,8 +49,10 @@ $('.start').click(function(){
 	setTimeout(function() {
 		randomPikachu();
 		randomMew();
-		randomCharizard();
 		animateMew();
+		if ($('#form').val() === "hard") {
+			randomCharizard();
+		}
 		var counter = setInterval(timer, 1000);
 		function timer() {
 			count--;
@@ -119,7 +121,7 @@ $('#high').text(localStorage.high);
 function checkWin(score) {
 	if (score > 0 && score < 10) {
 		$('body').addClass("tryAgain");
-		$('h3').text("You only caught " + score + " Pokémon... Try again!");
+		$('h3').text("Only " + score + " Pokémon??! You could do better...");
 		$('#battleWon').get(0).play();
 	} else if (score > 9) {
 		$('body').addClass("winner");
@@ -134,10 +136,8 @@ function checkWin(score) {
 
 //MEW FLYING ANIMATION
 function makeNewPosition(){
-    // Get viewport dimensions (remove the dimension of the div)
     var h = $(window).height() - 50;
     var w = $(window).width() - 50;
-    
     var nh = Math.floor(Math.random() * h);
     var nw = Math.floor(Math.random() * w);
     
@@ -145,11 +145,11 @@ function makeNewPosition(){
 }
 
 function animateMew(){
-    var newq = makeNewPosition();
-    var oldq = $('.mew').offset();
-    var speed = calcSpeed([oldq.top, oldq.left], newq);
+    var newX = makeNewPosition();
+    var oldX = $('.mew').offset();
+    var speed = calcSpeed([oldX.top, oldX.left], newX);
     
-    $('.mew').animate({ top: newq[0], left: newq[1] }, speed, function(){
+    $('.mew').animate({ top: newX[0], left: newX[1] }, speed, function(){
       animateMew();        
     });
 };
@@ -157,10 +157,12 @@ function animateMew(){
 function calcSpeed(prev, next) {
     var x = Math.abs(prev[1] - next[1]);
     var y = Math.abs(prev[0] - next[0]);
-
     var greatest = x > y ? x : y;
-    var speedModifier = 0.2;
-
+    if ($('#form').val() === "hard") {
+    	var speedModifier = 0.3;
+    } else {
+    	var speedModifier = 0.1;
+    }
     var speed = Math.ceil(greatest/speedModifier);
     return speed;
 }

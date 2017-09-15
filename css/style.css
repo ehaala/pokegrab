@@ -9,6 +9,14 @@ body {
 	font-family: copperplate, serif;
 }
 
+header {
+	margin: 0;
+	padding: 0;
+	line-height: 10px;
+	display: inline-block;
+	width: 950px;
+}
+
 h5 {
 	color: white;
 	background: black;
@@ -32,14 +40,6 @@ h4 {
 	margin: 0;
 }
 
-header {
-	margin: 0;
-	padding: 0;
-	line-height: 10px;
-	display: inline-block;
-	width: 950px;
-}
-
 #intro {
 	background: black;
 	color: white;
@@ -47,7 +47,7 @@ header {
 	width: 500px;
 	display: inline-block;
 	padding: 10px;
-	border: 2px solid red;
+	border: 1px solid red;
 	font-weight: lighter;
 	font-size: 22px;
 }
